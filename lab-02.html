@@ -9,7 +9,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
-<meta name="author" content="Team Name: Peter, User2, Libby, Maya, User5 and Max" />
+<meta name="author" content="Team Name: Peter, Aidan, Libby, Maya, User5 and Max" />
 
 <meta name="date" content="2024-10-04" />
 
@@ -351,7 +351,7 @@ display: none;
 
 
 <h1 class="title toc-ignore">Lab 02 - Global plastic waste</h1>
-<h4 class="author">Team Name: Peter, User2, Libby, Maya, User5 and
+<h4 class="author">Team Name: Peter, Aidan, Libby, Maya, User5 and
 Max</h4>
 <h4 class="date">2024-10-04</h4>
 
@@ -367,7 +367,7 @@ library(readxl)</code></pre>
 <h2>Load &amp; join data sets</h2>
 <pre class="r"><code># Member 2 (pair 1) write code to load File 1 data here:
 
-
+data1 &lt;- read_csv(&quot;data/mismanaged-plastic-waste-per-capita.csv&quot;)
 
 # Member 4 (pair 2) write code to load File 2 data here:
 
@@ -375,12 +375,12 @@ library(readxl)</code></pre>
 
 # Member 6 (pair 3) write code to load File 3 data here:
 
-
+data3 &lt;- read_tsv(&quot;data/UN_country_population.tsv&quot;)
 
 # Member 1 (pair 1) write code to load File 4 data here:</code></pre>
 <pre class="r"><code># Member 2 (pair 1) write code to create object &#39;plastic_data_all&#39;:
 
-
+plastic_data_all &lt;- data1
 
 
 # Member 4 (pair 2) write code to join your data to &#39;plastic_data_all&#39;:
@@ -390,11 +390,27 @@ library(readxl)</code></pre>
 
 # Member 6 (pair 3) write code to join your data to &#39;plastic_data_all&#39;:
 
-
-
+plastic_data_all &lt;- data3 %&gt;%
+  select(-name) %&gt;%
+  right_join(plastic_data_all, by = &quot;code&quot;)
 
 # Member 1 (pair 1) write code to join your data to &#39;plastic_data_all&#39;:</code></pre>
-<pre class="r"><code># Member 2 (pair 1) adds code here to view the first 10 rows of &#39;plastic_data_all&#39;</code></pre>
+<pre class="r"><code># Member 2 (pair 1) adds code here to view the first 10 rows of &#39;plastic_data_all&#39;
+
+plastic_data_all %&gt;% head(n = 10)</code></pre>
+<pre><code>## # A tibble: 10 × 4
+##    code  population name       mismanaged_plastic
+##    &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt;                   &lt;dbl&gt;
+##  1 COM         784. Comoros                69.5  
+##  2 DJI        1066. Djibouti               10.6  
+##  3 ERI        3474. Eritrea                24.0  
+##  4 KEN       50443. Kenya                   5.51 
+##  5 MDG       27187. Madagascar              0.936
+##  6 MUS        1296. Mauritius               0.235
+##  7 MOZ       29850. Mozambique             14.3  
+##  8 REU         945. Reunion                 0.262
+##  9 SYC         104. Seychelles              0.337
+## 10 SOM       15690. Somalia                 0</code></pre>
 </div>
 <div id="exercises" class="section level2">
 <h2>Exercises</h2>
