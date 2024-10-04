@@ -105,7 +105,12 @@ plastic_data_all %>%
 
 ```{r Ex3, message = FALSE}
 # Write your code here to answer exercise 3
-
+plastic_data_all %>%
+  mutate(pct_mismanaged_plastic_ocean = mismanaged_plastic_ocean / mismanaged_plastic * 100) %>%
+  drop_na() %>%
+  group_by(region) %>%
+  summarise(med_pct_mismanaged_plastic_ocean = median(pct_mismanaged_plastic_ocean)) %>%
+  arrange(desc(med_pct_mismanaged_plastic_ocean))
 
 
 ```
@@ -116,6 +121,19 @@ plastic_data_all %>%
 ```{r Ex4, message = FALSE}
 # Write your code here to answer exercise 4
 
+plastic_data_all %>%
+  rename(
+    pop = population,
+    plastic_o = mismanaged_plastic_ocean,
+    plastic = mismanaged_plastic,
+    country = name
+  )
+
+plastic_data_all %>%
+  mutate(
+    region = str_replace_all(region, "Latin America and The Caribbean", "LAC")
+  ) %>%
+  head(n=10)
 
 
 ```
