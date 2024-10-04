@@ -93,9 +93,10 @@ plastic_data_all %>%
 
 ```{r Ex2, message = FALSE}
 # Write your code here to answer exercise 2
-
-
-
+plastic_data_all %>%
+ mutate(total_mismanage_plastic = mismanaged_plastic * popultaion) %>%
+ group_by(region) %>%
+ summarise(mean_total = mean(total_mismanage_plastic))
 ```
 
 
