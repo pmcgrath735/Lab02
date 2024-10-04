@@ -30,7 +30,7 @@ data1 <- read_csv("data/mismanaged-plastic-waste-per-capita.csv")
 
 # Member 1 (pair 1) write code to load File 4 data here:
 
-
+data4 <- read_excel("data/UN_country_region.xlsx")
 
 ```
 
